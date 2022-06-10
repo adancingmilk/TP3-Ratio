@@ -9,7 +9,7 @@ public class Coureur {
     //Stats
     private boolean arrive;
     private boolean abandon;
-    private boolean ratio;
+    private boolean ratio; // si ils sont disqualifiés
     private LocalTime time;
 
     public Coureur(String nom, final int numDossard) {
@@ -39,7 +39,11 @@ public class Coureur {
         return ratio;
     }
 
-    public LocalTime getTime() {return time = LocalTime.now();}
+    public LocalTime getTime() {
+        if (isArrive()==false)
+            return time = LocalTime.now();
+        return time;
+    }
 
     public boolean isAbandon() {
         return abandon;
@@ -72,10 +76,9 @@ public class Coureur {
 
     @Override
     public String toString() {
-        return "Coureur{" +
+        return "{" +
                 "nom='" + nom + '\'' +
                 ", numDossard=" + numDossard +
-                ", time=" +
                 '}';
     }
 }

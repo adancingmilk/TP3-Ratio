@@ -19,7 +19,7 @@ public class Coureurs implements Iterable<Coureur> {
         coureurs.add(c);
     }
 
-    public void generateCoureurs() {
+    public void generateCoureurs() { // ajoute des coureurs de base pour le programme
         coureurs.add(new Coureur("LATRONCHE", 1));
         coureurs.add(new Coureur("LACHAUD", 2));
         coureurs.add(new Coureur("COSTHILLES", 3));
@@ -28,7 +28,7 @@ public class Coureurs implements Iterable<Coureur> {
     @Override
     public Iterator<Coureur> iterator() {
         return coureurs.iterator();
-    }
+    } // permet d'itérer dans la liste, directement avec un for
 
     @Override
     public String toString() {
@@ -38,37 +38,33 @@ public class Coureurs implements Iterable<Coureur> {
                             .append("][").append(c.getNom())
                             .append("][Arrived: ").append(c.isArrive())
                             .append("][Forfeit: ").append(c.isAbandon())
-                            .append("][Ratio: ").append(c.isRatio());
+                            .append("][Ratio: ").append(c.isRatio()).append("]\n");
         }
 
         return text.toString();
     }
 
-    public void classement(){
-        List<Coureur> coureursClasse = getCoureurs();
-        coureursClasse.sort(new CoureurComparator());
-        System.out.println(coureursClasse.toString());
-    }
 
-    public void estArrive() {
+    public void estArrive() { // déclare quand un coureur choisi est arrivé
         Scanner sc3 = new Scanner(System.in);
         System.out.println("entrez le numéro de dossard du coureur :");
         int numJoueur = sc3.nextInt();
         for (Coureur coureur : coureurs) {
-            if (coureur.getNumDossard() == numJoueur) {
+            if (coureur.getNumDossard() == numJoueur && coureur.isAbandon()==false && coureur.isRatio() == false) {
                 coureur.setArrive(true);
                 coureur.getTime();
+                coureur.setTime(LocalTime.now());
                 System.out.println("Le coureur" + coureur.toString() + "est arrivé");
             }
         }
     }
 
-    public void aAbandonne(){
+    public void aAbandonne(){ // déclare si un coureur abandonne
         Scanner sc3 = new Scanner(System.in);
         System.out.println("entrez le numéro de dossard du coureur :");
         int numJoueur = sc3.nextInt();
         for (Coureur coureur : coureurs){
-            if (coureur.getNumDossard() == numJoueur) {
+            if (coureur.getNumDossard() == numJoueur && coureur.isArrive()==false && coureur.isRatio() == false) {
                 coureur.setAbandon(true);
                 coureur.getTime();
                 System.out.println("Le coureur" + coureur.toString() + "a abandonné");
@@ -77,12 +73,12 @@ public class Coureurs implements Iterable<Coureur> {
 
     }
 
-    public void estDisqualifie(){
+    public void estDisqualifie(){ // declare si un coureur est disqualifié
         Scanner sc3 = new Scanner(System.in);
         System.out.println("entrez le numéro de dossard du coureur :");
         int numJoueur = sc3.nextInt();
         for (Coureur coureur : coureurs){
-            if (coureur.getNumDossard() == numJoueur) {
+            if (coureur.getNumDossard() == numJoueur && coureur.isRatio() == false) {
                 coureur.setRatio(true);
                 coureur.getTime();
                 System.out.println("Le coureur" + coureur.toString() + "est disqualifié");
@@ -90,4 +86,5 @@ public class Coureurs implements Iterable<Coureur> {
         }
 
     }
+
 }
