@@ -11,7 +11,8 @@ public class Main {
         Course course = new Course(coureurs);
 
         printOptions(); //Affichage des options
-        switch (selectChoix()) {
+        int choix = selectChoix();
+        switch (choix) {
             case 1: coureurs.toString(); break;
             case 2: coureurs.classement(); break;
             case 3: coureurs.estArrive();  break;
