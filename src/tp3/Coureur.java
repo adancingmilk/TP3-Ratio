@@ -12,14 +12,12 @@ public class Coureur {
     private boolean ratio;
     private LocalTime time;
 
-    public Coureur(String nom, final int numDossard, int nbCoureurs) {
+    public Coureur(String nom, final int numDossard) {
         try {
             this.nom = nom;
-            if (numDossard < 1 || numDossard >= nbCoureurs)
-                throw new ArithmeticException("Le numéro de dossard doit être compris entre 1 et le nombre de coureurs.");
-
+            if (numDossard < 1)
+                throw new ArithmeticException("Le numéro de dossard doit être supérieur à 1.");
             this.numDossard = numDossard;
-
             this.arrive = false;
             this.abandon = false;
             this.ratio = false;
@@ -41,9 +39,7 @@ public class Coureur {
         return ratio;
     }
 
-    public LocalTime getTime() {
-        return time;
-    }
+    public LocalTime getTime() {return time = LocalTime.now();}
 
     public boolean isAbandon() {
         return abandon;
@@ -74,5 +70,12 @@ public class Coureur {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Coureur{" +
+                "nom='" + nom + '\'' +
+                ", numDossard=" + numDossard +
+                ", time=" + time +
+                '}';
+    }
 }
