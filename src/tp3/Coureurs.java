@@ -20,9 +20,9 @@ public class Coureurs implements Iterable<Coureur> {
     }
 
     public void generateCoureurs(int nbCoureurs) {
-        coureurs.add(new Coureur("LATRONCHE", 1, nbCoureurs));
-        coureurs.add(new Coureur("LACHAUD", 2, nbCoureurs));
-        coureurs.add(new Coureur("COSTHILLES", 3, nbCoureurs));
+        coureurs.add(new Coureur("LATRONCHE", 1));
+        coureurs.add(new Coureur("LACHAUD", 2));
+        coureurs.add(new Coureur("COSTHILLES", 3));
     }
 
     @Override
@@ -58,6 +58,7 @@ public class Coureurs implements Iterable<Coureur> {
             if (coureur.getNumDossard() == numJoueur) {
                 coureur.setArrive(true);
                 coureur.getTime();
+                System.out.println("Le coureur" + coureur.toString() + "est arrivé");
             }
         }
         sc.close();
@@ -71,6 +72,7 @@ public class Coureurs implements Iterable<Coureur> {
             if (coureur.getNumDossard() == numJoueur) {
                 coureur.setAbandon(true);
                 coureur.getTime();
+                System.out.println("Le coureur" + coureur.toString() + "a abandonné");
             }
         }
         sc.close();
@@ -84,18 +86,10 @@ public class Coureurs implements Iterable<Coureur> {
             if (coureur.getNumDossard() == numJoueur) {
                 coureur.setRatio(true);
                 coureur.getTime();
+                System.out.println("Le coureur" + coureur.toString() + "est disqualifié");
             }
         }
+        
         sc.close();
-    }
-
-    public LocalTime currentTime(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("entrez le numéro de dossard du coureur :");
-        int numJoueur = sc.nextInt();
-        for (Coureur coureur : coureurs){
-            if (coureur.getNumDossard() == numJoueur)
-               return coureur.getTime().minus(ChronoUnit.MINUTES);
-        }
     }
 }
