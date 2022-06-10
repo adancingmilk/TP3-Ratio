@@ -3,34 +3,40 @@ package tp3;
 import java.util.Scanner;
 
 public class Main {
-    private static final int NB_COUREURS = 3;
     public static void main(String[] args) {
         Coureurs coureurs = new Coureurs();
-        coureurs.generateCoureurs(NB_COUREURS); //Génère les coureurs
+        coureurs.generateCoureurs(); //Génère les coureurs
 
         Course course = new Course(coureurs);
 
         printOptions(); //Affichage des options
-        int choix = selectChoix();
-        switch (choix) {
-            case 1: coureurs.toString(); break;
-            case 2: coureurs.classement(); break;
-            case 3: coureurs.estArrive();  break;
-            case 4: coureurs.aAbandonne(); break;
-            case 5: coureurs.estDisqualifie(); break;
-            case 6:
-                String nom;
-                int numDoss;
-                Scanner sc = new Scanner(System.in);
-                nom = sc.nextLine();
-                numDoss = sc.nextInt();
-                coureurs.add(new Coureur(nom, numDoss));
-                break;
-            case 7: course.StartCourse(); break;
-            case 8: System.out.println(course.currentTime()); break;
-            case 9: course.EndCourse(); break;
-            default: break;
-        }
+        Scanner sc = new Scanner(System.in);
+        int rep = -1;
+        do {
+            System.out.print("Entrez un nombre : ");
+            rep = sc.nextInt();
+            switch (rep) {
+                case 1: System.out.println(coureurs.toString()); break;
+                case 2: coureurs.classement(); break;
+                case 3: coureurs.estArrive(); break;
+                case 4: coureurs.aAbandonne(); break;
+                case 5: coureurs.estDisqualifie(); break;
+                case 6:
+                    String nom;
+                    int numDoss;
+                    System.out.println("Entrez un nom :");
+                    Scanner sc2 = new Scanner(System.in);
+                    nom = sc2.nextLine();
+                    System.out.println("Entrez un numéro de dossard :");
+                    numDoss = sc2.nextInt();
+                    coureurs.add(new Coureur(nom, numDoss));
+                    break;
+                case 7: course.StartCourse(); break;
+                case 8: System.out.println(course.currentTime()); break;
+                case 9: course.EndCourse(); break;
+                default: break;
+                }
+            }while(rep > 0 && rep < 10);
     }
 
     public static void printOptions() {
@@ -44,16 +50,11 @@ public class Main {
         System.out.println("7 - Démarrer la course");
         System.out.println("8 - Le temps actuel d'un courreur");
         System.out.println("9 - Terminer la course");
+        System.out.println("Autre - Quitter le programme");
     }
 
-    public static int selectChoix() {
-        Scanner sc = new Scanner(System.in);
-        int rep = -1;
-        do {
-            System.out.print("Entrez un nombre : ");
-            rep = sc.nextInt();
-        } while(rep > 0 && rep < 10);
+    //public static int selectChoix() {
 
-        return rep;
-    }
+
+   // }
 }

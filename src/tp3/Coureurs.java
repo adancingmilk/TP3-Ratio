@@ -19,7 +19,7 @@ public class Coureurs implements Iterable<Coureur> {
         coureurs.add(c);
     }
 
-    public void generateCoureurs(int nbCoureurs) {
+    public void generateCoureurs() {
         coureurs.add(new Coureur("LATRONCHE", 1));
         coureurs.add(new Coureur("LACHAUD", 2));
         coureurs.add(new Coureur("COSTHILLES", 3));
@@ -47,13 +47,13 @@ public class Coureurs implements Iterable<Coureur> {
     public void classement(){
         List<Coureur> coureursClasse = getCoureurs();
         coureursClasse.sort(new CoureurComparator());
-        coureursClasse.toString();
+        System.out.println(coureursClasse.toString());
     }
 
     public void estArrive() {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc3 = new Scanner(System.in);
         System.out.println("entrez le numéro de dossard du coureur :");
-        int numJoueur = sc.nextInt();
+        int numJoueur = sc3.nextInt();
         for (Coureur coureur : coureurs) {
             if (coureur.getNumDossard() == numJoueur) {
                 coureur.setArrive(true);
@@ -61,13 +61,12 @@ public class Coureurs implements Iterable<Coureur> {
                 System.out.println("Le coureur" + coureur.toString() + "est arrivé");
             }
         }
-        sc.close();
     }
 
     public void aAbandonne(){
-        Scanner sc = new Scanner(System.in);
+        Scanner sc3 = new Scanner(System.in);
         System.out.println("entrez le numéro de dossard du coureur :");
-        int numJoueur = sc.nextInt();
+        int numJoueur = sc3.nextInt();
         for (Coureur coureur : coureurs){
             if (coureur.getNumDossard() == numJoueur) {
                 coureur.setAbandon(true);
@@ -75,13 +74,13 @@ public class Coureurs implements Iterable<Coureur> {
                 System.out.println("Le coureur" + coureur.toString() + "a abandonné");
             }
         }
-        sc.close();
+
     }
 
     public void estDisqualifie(){
-        Scanner sc = new Scanner(System.in);
+        Scanner sc3 = new Scanner(System.in);
         System.out.println("entrez le numéro de dossard du coureur :");
-        int numJoueur = sc.nextInt();
+        int numJoueur = sc3.nextInt();
         for (Coureur coureur : coureurs){
             if (coureur.getNumDossard() == numJoueur) {
                 coureur.setRatio(true);
@@ -89,7 +88,6 @@ public class Coureurs implements Iterable<Coureur> {
                 System.out.println("Le coureur" + coureur.toString() + "est disqualifié");
             }
         }
-        
-        sc.close();
+
     }
 }

@@ -75,7 +75,7 @@ public class Coureur {
         return "Coureur{" +
                 "nom='" + nom + '\'' +
                 ", numDossard=" + numDossard +
-                ", time=" + time +
+                ", time=" +
                 '}';
     }
 }

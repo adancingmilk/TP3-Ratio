@@ -18,8 +18,8 @@ public class Course {
     };
 
     public LocalTime EndCourse(){
-        Coureurs c = new Coureurs();
-        c.getCoureurs();
+        Coureurs c;
+        c = coureurs;
         for (Coureur coureur : c){
             if (coureur.isArrive()==false)
                 coureur.setRatio(true);
@@ -34,13 +34,13 @@ public class Course {
     }
 
     public long currentTime(){
-        Scanner sc = new Scanner(System.in);
+        Scanner sc3 = new Scanner(System.in);
         System.out.println("entrez le numéro de dossard du coureur :");
-        int numJoueur = sc.nextInt();
+        int numJoueur = sc3.nextInt();
         for (Coureur coureur : coureurs){
             if (coureur.getNumDossard() == numJoueur)
-
-                return startTime.until(coureur.getTime(), ChronoUnit.MINUTES);
+                sc3.close();
+                return startTime.until(coureur.getTime(), ChronoUnit.SECONDS);
         }
         return 0;
     }
